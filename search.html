@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Grocery Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="index.html" class="logo">TATAMart</a>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search for products...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="#" id="profileLink">My Profile</a>
+                    <a href="#" id="cartLink">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCount" class="cart-count">0</span>
+                    </a>
+                    <a href="login.html" id="logoutLink">Logout</a>
+                </nav>
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    
+      <h2>Search Results</h2>
+      <div id="search-results" class="product-container"></div>
+    
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid grid-3">
+                <div class="footer-col">
+                    <h3>TATAMart</h3>
+                    <p>Fresh groceries delivered in minutes</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Menu</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">My Orders</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Fruits</a></li>
+                        <li><a href="#">Vegetables</a></li>
+                        <li><a href="#">Dairy & Eggs</a></li>
+                        <li><a href="#">Bread & Bakery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 TATAMart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Profile Modal -->
+    <!-- Profile Modal -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>My Profile</h3>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="profileView">
+                <div class="profile-info">
+                    <div class="info-item">
+                        <span class="info-label">Name:</span>
+                        <span id="profileNameDisplay" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span id="profileEmailDisplay" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Address:</span>
+                        <span id="profileAddressDisplay" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Phone:</span>
+                        <span id="profilePhoneDisplay" class="info-value"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closeProfileBtn">Close</button>
+                    <button type="button" class="btn btn-primary" id="editProfileBtn">Edit Profile</button>
+                    <button type="button" class="btn btn-info" id="viewOrdersBtn">View Order History</button>
+                </div>
+            </div>
+
+            <div id="editProfileView" style="display: none;">
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="profileName">Full Name</label>
+                        <input type="text" id="profileName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profileEmail">Email</label>
+                        <input type="email" id="profileEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profileAddress">Address</label>
+                        <textarea id="profileAddress" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="profilePhone">Phone Number</label>
+                        <input type="tel" id="profilePhone" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelEditBtn">Cancel</button>
+                        <button type="submit" class="btn btn-success">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="orderHistoryView" style="display: none;">
+                <h4>Order History</h4>
+                <div id="orderHistoryList" class="order-history-list">
+                    <!-- Orders will be displayed here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="backToProfileBtn">Back to Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Your Shopping Cart</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-content">
+                    <div class="cart-items" id="cartItemsContainer">
+                        <div class="empty-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>Your cart is empty</p>
+                        </div>
+                    </div>
+                    <div class="cart-summary">
+                        <h4>Order Summary</h4>
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="cartSubtotal">₹0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax (10%):</span>
+                            <span id="cartTax">₹0.00</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span id="cartTotal">₹0.00</span>
+                        </div>
+                        <button class="btn btn-primary" id="checkoutBtn" disabled>Proceed to Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Success Modal -->
+    <div id="orderSuccessModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Order Placed Successfully</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="success-message">Your order has been placed successfully!</p>
+                <div id="orderDetails"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="closeOrderSuccessBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+     <!-- Add these before your main.js -->
+<!-- Add these before your main.js -->
+<script src="js/products-data.js"></script>
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/search.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/main.js"></script>
+<script src="js/search-redirect.js"></script>
+</body>
+</html>
